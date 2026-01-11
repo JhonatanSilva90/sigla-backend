@@ -1,7 +1,16 @@
-import dotenv from "dotenv";
-import { app } from "./app";
+import express from "express";
+import cors from "cors";
+import routes from "./routes";
 
-dotenv.config();
+console.log("🔥🔥🔥 SERVER INICIADO 🔥🔥🔥");
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Monta todas as rotas
+app.use(routes);
 
 const PORT = process.env.PORT || 3333;
 

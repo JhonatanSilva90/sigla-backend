@@ -2,12 +2,15 @@ import { Request, Response } from "express";
 import { UserService } from "./user.service";
 
 export class UserController {
+  private userService = new UserService();
+
   async create(req: Request, res: Response) {
     try {
       const { name, email, password } = req.body;
 
-      const service = new UserService();
-      const user = await service.create({ name, email, password });
+      const user = await this.userService.create({ name, email, password });
+
+      console.log(`ola `, req.body);
 
       return res.status(201).json(user);
     } catch (error: any) {
