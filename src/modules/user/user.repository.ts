@@ -21,4 +21,17 @@ export class UserRepository {
   async findAll(): Promise<User[]> {
     return prisma.user.findMany();
   }
+
+  async update(id: string, data: Prisma.UserUpdateInput): Promise<User> {
+    return prisma.user.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async delete(id: string): Promise<User> {
+    return prisma.user.delete({
+      where: { id },
+    });
+  }
 }
